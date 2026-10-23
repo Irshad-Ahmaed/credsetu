@@ -1,0 +1,27 @@
+{
+  "name": "miniledger",
+  "private": true,
+  "workspaces": ["api", "mobile"],
+  "overrides": {
+    "decode-uri-component": "$decode-uri-component",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
+  "dependencies": {
+    "decode-uri-component": "file:vendor/decode-uri-component-0.5.0-miniledger.1.tgz",
+    "expo-router": "~57.0.29",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
+  "scripts": {
+    "dev:api": "npm --workspace api run dev",
+    "dev:mobile": "npm --workspace mobile run start",
+    "typecheck": "npm --workspace api run typecheck && npm --workspace mobile run typecheck",
+    "test": "npm --workspace api test && npm run test:mobile",
+    "test:mobile": "npm --workspace api exec -- tsx --test ../tests/*.test.ts",
+    "db:up": "docker compose up -d db",
+    "db:down": "docker compose down",
+    "db:migrate": "npm --workspace api run migrate",
+    "db:seed": "npm --workspace api run seed"
+  }
+}
